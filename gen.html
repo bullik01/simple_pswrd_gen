@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <title>Генератор паролей | Passwords Generator</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+</head>
+
+<body>
+<center>
+  <h1>Генератор паролей | Passwords Generator</h1>
+</center>
+<script type="text/javascript">
+	var chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	var special_chars = '!@#$%^&*()';
+	var extra_special_chars = '-_[]{}<>~`+=,.;:/?|';
+
+	function genpass(passlen, passwstrength) {
+		xchars = chars;
+		if(passwstrength == 2) xchars += special_chars;
+		if(passwstrength == 3) xchars += special_chars + extra_special_chars;
+
+		password='';
+
+		for ( i=0; i<passlen; i++ )
+			password += xchars.charAt(Math.floor(Math.random()*xchars.length));
+
+		document.getElementById('pascode').value = password;
+	}
+</script>
+
+<p>&nbsp;</p>
+
+<div style="text-align: center;">
+	<form>
+		<b>Новый пароль</b><br />
+		<input id="pascode" style="color:red;font-size:200%;" type="text" name="pascode" size=30 value=""><br /><br />
+		<b>Длина пароля: </b><input type="text" name="passwlen" size=3 value="12"><br /><br />
+		<b>Параметры пароля: </b><br />
+    <p>Обычный ( Буквы aA + цифры )<input type="radio" name="passwstrength" size=3 value="1"></p>
+    <p>С добавлением символов ( Буквы aA + цифры + !@#$%^&*() )<input type="radio" name="passwstrength" size=3 value="2"></p>
+    <p>Ещё больше символов! ( Буквы aA + цифры + !@#$%^&*() + -_[]{}<>~`+=,.;:/?|)<input type="radio" name="passwstrength" size=3 value="3"></p>
+		<input type="button" value="Генерировать пароль" onClick="genpass(this.form.passwlen.value, this.form.passwstrength.value)">
+	</form>
+</div>
+
+</body>
+</html>
